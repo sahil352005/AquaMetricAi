@@ -1,0 +1,540 @@
+/* ============================================
+   AquaMetric AI - CSS Stylesheet
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00a8e8;
+    --secondary-color: #00c9ff;
+    --accent-color: #92e7e4;
+    --dark-bg: #0a1628;
+    --light-bg: #f0f4f8;
+    --text-dark: #1a1e27;
+    --text-light: #666;
+    --border-color: #dfe7f0;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --shadow: 0 4px 15px rgba(0, 168, 232, 0.1);
+}
+
+/* ============================================
+   Global Styles
+   ============================================ */
+
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a1628 0%, #1a2a4a 100%);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================
+   Header
+   ============================================ */
+
+.header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    margin-bottom: 40px;
+    border-radius: 0 0 15px 15px;
+    box-shadow: var(--shadow);
+}
+
+.header-content h1 {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.header-content p {
+    font-size: 1.2em;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* ============================================
+   Main Content
+   ============================================ */
+
+.main-content {
+    flex: 1;
+    background: white;
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Upload Section
+   ============================================ */
+
+.upload-section {
+    margin-bottom: 40px;
+}
+
+.upload-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.upload-area {
+    border: 3px dashed var(--primary-color);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 168, 232, 0.05), rgba(146, 231, 228, 0.05));
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.upload-area:hover {
+    border-color: var(--secondary-color);
+    background: linear-gradient(135deg, rgba(0, 168, 232, 0.1), rgba(146, 231, 228, 0.1));
+    transform: translateY(-2px);
+}
+
+.upload-area.dragover {
+    border-color: var(--accent-color);
+    background: linear-gradient(135deg, rgba(0, 168, 232, 0.15), rgba(146, 231, 228, 0.15));
+}
+
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.upload-area p {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin: 5px 0;
+    font-weight: 500;
+}
+
+.upload-hint {
+    font-size: 0.9em;
+    color: var(--text-light);
+    font-weight: 400;
+}
+
+/* ============================================
+   Buttons
+   ============================================ */
+
+.btn {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 168, 232, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 168, 232, 0.4);
+}
+
+.btn-secondary {
+    background: var(--light-bg);
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--primary-color);
+    color: white;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   Loading State
+   ============================================ */
+
+.loading-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loading-state.hidden,
+.error-section.hidden,
+.results-section.hidden {
+    display: none;
+}
+
+.spinner {
+    border: 4px solid var(--light-bg);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-state p {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin: 10px 0;
+}
+
+.loading-hint {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+/* ============================================
+   Results Section
+   ============================================ */
+
+.results-section h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 1.8em;
+}
+
+/* ============================================
+   Metrics Grid
+   ============================================ */
+
+.metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.metric-card {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecf1);
+    border-left: 4px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 168, 232, 0.15);
+}
+
+.metric-card h3 {
+    color: var(--text-light);
+    font-size: 0.95em;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.metric-value {
+    font-size: 2.2em;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.metric-unit {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+/* Risk Level Coloring */
+.metric-card:has(.metric-value:contains("Low")) {
+    border-left-color: var(--success-color);
+}
+
+.metric-card:has(.metric-value:contains("Medium")) {
+    border-left-color: var(--warning-color);
+}
+
+.metric-card:has(.metric-value:contains("High")) {
+    border-left-color: var(--error-color);
+}
+
+/* ============================================
+   Charts
+   ============================================ */
+
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.chart-wrapper {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-wrapper h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+canvas {
+    max-height: 400px;
+}
+
+/* ============================================
+   Recommendations
+   ============================================ */
+
+.recommendations-section {
+    background: linear-gradient(135deg, rgba(0, 168, 232, 0.05), rgba(146, 231, 228, 0.05));
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.recommendations-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    font-size: 1.3em;
+}
+
+.recommendations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.recommendation-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    border-left: 5px solid var(--success-color);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.recommendation-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 168, 232, 0.15);
+}
+
+.recommendation-card h4 {
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.recommendation-card .description {
+    color: var(--text-light);
+    font-size: 0.95em;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.recommendation-card .impact {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1em;
+}
+
+/* ============================================
+   Error Section
+   ============================================ */
+
+.error-section {
+    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05), rgba(249, 115, 115, 0.05));
+    border-left: 5px solid var(--error-color);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+}
+
+.error-section h3 {
+    color: var(--error-color);
+    margin-bottom: 10px;
+    font-size: 1.3em;
+}
+
+.error-section p {
+    color: var(--text-dark);
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+/* ============================================
+   Footer
+   ============================================ */
+
+.footer {
+    background: var(--dark-bg);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-top: 2px solid var(--primary-color);
+    margin-top: auto;
+}
+
+.footer p {
+    margin: 0;
+    opacity: 0.8;
+}
+
+/* ============================================
+   Responsive Design
+   ============================================ */
+
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .header {
+        padding: 30px 15px;
+        margin-bottom: 20px;
+    }
+
+    .header-content h1 {
+        font-size: 2em;
+    }
+
+    .header-content p {
+        font-size: 1em;
+    }
+
+    .main-content {
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+
+    .upload-section h2 {
+        font-size: 1.4em;
+    }
+
+    .upload-area {
+        padding: 30px 20px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 15px;
+    }
+
+    .metric-card {
+        padding: 15px;
+    }
+
+    .metric-value {
+        font-size: 1.8em;
+    }
+
+    .charts-container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .chart-wrapper {
+        padding: 15px;
+    }
+
+    .recommendations-list {
+        grid-template-columns: 1fr;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-content h1 {
+        font-size: 1.5em;
+    }
+
+    .main-content {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .upload-area {
+        padding: 20px;
+    }
+
+    .upload-icon {
+        width: 40px;
+        height: 40px;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .metric-value {
+        font-size: 1.5em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}

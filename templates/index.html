@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaMetric AI - Data Center Water Sustainability Analyzer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🚀 AquaMetric AI</h1>
+                <p>Data Center Water Sustainability Analyzer</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Upload Section -->
+            <section class="upload-section">
+                <h2>Upload Sustainability Report</h2>
+                <div class="upload-area" id="uploadArea">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M12 2v20m10-10H2M12 2L6 8m6-6l6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Drag and drop your PDF here</p>
+                    <p class="upload-hint">or click to select</p>
+                    <input type="file" id="fileInput" accept=".pdf" hidden>
+                </div>
+                <button id="analyzeBtn" class="btn btn-primary" disabled>
+                    <span>Analyze PDF</span>
+                </button>
+            </section>
+
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state hidden">
+                <div class="spinner"></div>
+                <p>Analyzing sustainability report...</p>
+                <p class="loading-hint">This may take a moment</p>
+            </div>
+
+            <!-- Results Section -->
+            <section id="resultsSection" class="results-section hidden">
+                <h2>Analysis Results</h2>
+
+                <!-- Metrics Cards -->
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>Water Usage</h3>
+                        <p class="metric-value" id="waterUsage">-</p>
+                        <p class="metric-unit">ML/year</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Water Usage Effectiveness</h3>
+                        <p class="metric-value" id="wueValue">-</p>
+                        <p class="metric-unit">L/kWh</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Region</h3>
+                        <p class="metric-value" id="regionValue">-</p>
+                        <p class="metric-unit">Location</p>
+                    </div>
+
+                    <div class="metric-card">
+                        <h3>Risk Level</h3>
+                        <p class="metric-value" id="riskLevel">-</p>
+                        <p class="metric-unit">Assessment</p>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="charts-container">
+                    <div class="chart-wrapper">
+                        <h3>Strategy Impact</h3>
+                        <canvas id="impactChart"></canvas>
+                    </div>
+
+                    <div class="chart-wrapper">
+                        <h3>Water Usage Distribution</h3>
+                        <canvas id="waterChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Recommendations -->
+                <div class="recommendations-section">
+                    <h3>💡 Water-Saving Recommendations</h3>
+                    <div id="recommendationsList" class="recommendations-list">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button id="newAnalysisBtn" class="btn btn-secondary">
+                        Analyze Another PDF
+                    </button>
+                    <button id="exportBtn" class="btn btn-secondary">
+                        Export Results
+                    </button>
+                </div>
+            </section>
+
+            <!-- Error Section -->
+            <div id="errorSection" class="error-section hidden">
+                <h3>⚠️ Error</h3>
+                <p id="errorMessage"></p>
+                <button class="btn btn-secondary" onclick="resetAnalysis()">Try Again</button>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 AquaMetric AI. Water Sustainability Analysis Platform.</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

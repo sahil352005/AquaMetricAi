@@ -64,10 +64,14 @@ function initializeEventListeners() {
     const analyzeBtn = document.getElementById('analyzeBtn');
     const newAnalysisBtn = document.getElementById('newAnalysisBtn');
     const exportBtn = document.getElementById('exportBtn');
+    const refreshBtn = document.getElementById('refreshBtn');
 
     analyzeBtn.addEventListener('click', analyzeFile);
     newAnalysisBtn.addEventListener('click', resetAnalysis);
     exportBtn.addEventListener('click', exportResults);
+    refreshBtn?.addEventListener('click', () => {
+        if (analysisData) displayResults(analysisData);
+    });
 }
 
 // ============================================
@@ -182,22 +186,29 @@ function displayRecommendations(recommendations) {
     list.innerHTML = '';
 
     if (!recommendations || !Array.isArray(recommendations)) {
-        list.innerHTML = '<p>No recommendations available</p>';
+        list.innerHTML = '<p style="text-align: center; color: var(--text-muted);">No recommendations available</p>';
         return;
     }
 
     recommendations.forEach((rec, index) => {
         const card = document.createElement('div');
-        card.className = 'recommendation-card';
+        card.className = 'recommendation-item';
 
         const strategy = rec.strategy || 'Strategy ' + (index + 1);
         const description = rec.description || '';
         const impact = rec.impact || '10%';
 
+        const impactNum = String(impact).replace('%', '');
+
         card.innerHTML = `
-            <h4>${escapeHtml(strategy)}</h4>
-            <p class="description">${escapeHtml(description)}</p>
-            <div class="impact">Estimated Impact: ${escapeHtml(String(impact).replace('%',''))}%</div>
+            <div class="recommendation-icon">${index + 1}</div>
+            <div class="recommendation-content">
+                <p class="rec-title">${escapeHtml(strategy)}</p>
+                <p class="rec-desc">${escapeHtml(description)}</p>
+                <p style="font-size: 0.8rem; color: var(--success); margin-top: 8px; font-weight: 600;">
+                    ↓ ${escapeHtml(impactNum)}% estimated reduction
+                </p>
+            </div>
         `;
 
         list.appendChild(card);
@@ -249,14 +260,14 @@ function createImpactChart(recommendations) {
                 label: 'Water Reduction %',
                 data: impacts,
                 backgroundColor: [
-                    'rgba(59, 130, 246, 0.7)',
+                    'rgba(0, 102, 255, 0.7)',
                     'rgba(16, 185, 129, 0.7)',
-                    'rgba(139, 92, 246, 0.7)',
+                    'rgba(0, 212, 255, 0.7)',
                 ],
                 borderColor: [
-                    '#3b82f6',
+                    '#0066ff',
                     '#10b981',
-                    '#8b5cf6',
+                    '#00d4ff',
                 ],
                 borderWidth: 2,
                 borderRadius: 6,
@@ -269,7 +280,7 @@ function createImpactChart(recommendations) {
                 legend: {
                     display: true,
                     labels: {
-                        color: '#8b949e',
+                        color: '#94a3b8',
                         font: { size: 12 },
                     },
                 },
@@ -278,11 +289,11 @@ function createImpactChart(recommendations) {
                 y: {
                     beginAtZero: true,
                     max: 100,
-                    ticks: { color: '#8b949e' },
+                    ticks: { color: '#94a3b8' },
                     grid: { color: 'rgba(255,255,255,0.05)' },
                 },
                 x: {
-                    ticks: { color: '#8b949e' },
+                    ticks: { color: '#94a3b8' },
                     grid: { display: false },
                 },
             },
@@ -328,7 +339,7 @@ function createWaterChart(data) {
                     display: true,
                     position: 'bottom',
                     labels: {
-                        color: '#8b949e',
+                        color: '#94a3b8',
                         font: { size: 12 },
                         padding: 15,
                     },
@@ -372,8 +383,16 @@ function resetAnalysis() {
     // Reset upload area text and styling
     const uploadArea = document.getElementById('uploadArea');
     uploadArea.style.borderColor = '';
-    uploadArea.querySelector('p').textContent = 'Drag and drop your PDF here';
-    uploadArea.querySelector('.upload-hint').textContent = 'or click to select';
+    
+    const uploadContent = uploadArea.querySelector('.upload-content');
+    if (uploadContent) {
+        uploadContent.innerHTML = `
+            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+            <h3>Drag and drop your PDF</h3>
+            <p class="upload-hint">or click to browse</p>
+            <p class="file-info">Supported format: PDF files only</p>
+        `;
+    }
 
     document.getElementById('loadingState').classList.add('hidden');
     document.getElementById('resultsSection').classList.add('hidden');

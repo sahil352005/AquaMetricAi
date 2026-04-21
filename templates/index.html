@@ -3,119 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaMetric AI - Data Center Water Sustainability Analyzer</title>
+    <title>AquaMetric AI - Water Sustainability Analyzer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <div class="header-content">
-                <h1>💧 AquaMetric AI</h1>
-                <p>Data Center Water Sustainability Analyzer</p>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-water"></i>
+                <span>AquaMetric AI</span>
             </div>
-        </header>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Upload Section -->
-            <section class="upload-section" id="uploadSection">
-                <h2>Upload Sustainability Report</h2>
-                <div class="upload-area" id="uploadArea">
-                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M12 2v20m10-10H2M12 2L6 8m6-6l6 6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <p>Drag and drop your PDF here</p>
-                    <p class="upload-hint">or click to select</p>
-                    <input type="file" id="fileInput" accept=".pdf" hidden>
-                </div>
-                <button id="analyzeBtn" class="btn btn-primary" disabled>
-                    <span>Analyze PDF</span>
-                </button>
-            </section>
-
-            <!-- Loading State -->
-            <div id="loadingState" class="loading-state hidden">
-                <div class="spinner"></div>
-                <p>Analyzing sustainability report...</p>
-                <p class="loading-hint">This may take a moment</p>
+            <div class="nav-info">
+                <span class="version">v2.0</span>
             </div>
+        </div>
+    </nav>
 
-            <!-- Results Section -->
-            <section id="resultsSection" class="results-section hidden">
-                <h2>Analysis Results</h2>
-
-                <!-- Metrics Cards -->
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <h3>Water Usage</h3>
-                        <p class="metric-value" id="waterUsage">-</p>
-                        <p class="metric-unit">ML/year</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3>Water Usage Effectiveness</h3>
-                        <p class="metric-value" id="wueValue">-</p>
-                        <p class="metric-unit">L/kWh</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3>Region</h3>
-                        <p class="metric-value" id="regionValue">-</p>
-                        <p class="metric-unit">Location</p>
-                    </div>
-
-                    <div class="metric-card">
-                        <h3>Risk Level</h3>
-                        <p class="metric-value" id="riskLevel">-</p>
-                        <p class="metric-unit">Assessment</p>
-                    </div>
+    <div class="main-wrapper">
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Water Sustainability Analyzer</h1>
+                    <p>AI-powered analysis of data center water usage and sustainability reports</p>
                 </div>
-
-                <!-- Charts Section -->
-                <div class="charts-container">
-                    <div class="chart-wrapper">
-                        <h3>Strategy Impact</h3>
-                        <canvas id="impactChart"></canvas>
-                    </div>
-
-                    <div class="chart-wrapper">
-                        <h3>Water Usage Distribution</h3>
-                        <canvas id="waterChart"></canvas>
-                    </div>
-                </div>
-
-                <!-- Recommendations -->
-                <div class="recommendations-section">
-                    <h3>💡 Water-Saving Recommendations</h3>
-                    <div id="recommendationsList" class="recommendations-list">
-                        <!-- Populated by JavaScript -->
-                    </div>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <button id="newAnalysisBtn" class="btn btn-secondary">
-                        Analyze Another PDF
-                    </button>
-                    <button id="exportBtn" class="btn btn-secondary">
-                        Export Results
-                    </button>
-                </div>
-            </section>
-
-            <!-- Error Section -->
-            <div id="errorSection" class="error-section hidden">
-                <h3>⚠️ Error</h3>
-                <p id="errorMessage"></p>
-                <button class="btn btn-secondary" onclick="resetAnalysis()">Try Again</button>
             </div>
-        </main>
+        </div>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- Main Content -->
+            <main class="main-content">
+                <!-- Upload Section -->
+                <section class="upload-section" id="uploadSection">
+                    <div class="section-header">
+                        <h2><i class="fas fa-file-pdf"></i> Upload Report</h2>
+                        <p class="section-subtitle">Upload your sustainability PDF for analysis</p>
+                    </div>
+                    
+                    <div class="upload-container">
+                        <div class="upload-area" id="uploadArea">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                <h3>Drag and drop your PDF</h3>
+                                <p class="upload-hint">or click to browse</p>
+                                <p class="file-info">Supported format: PDF files only</p>
+                            </div>
+                            <input type="file" id="fileInput" accept=".pdf" hidden>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-actions">
+                        <button id="analyzeBtn" class="btn btn-primary" disabled>
+                            <i class="fas fa-spark"></i>
+                            <span>Analyze PDF</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Loading State -->
+                <div id="loadingState" class="loading-state hidden">
+                    <div class="loading-container">
+                        <div class="spinner"></div>
+                        <h3>Analyzing Report</h3>
+                        <p>Processing your sustainability data...</p>
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <section id="resultsSection" class="results-section hidden">
+                    <div class="results-header">
+                        <h2><i class="fas fa-chart-line"></i> Analysis Results</h2>
+                        <button class="btn-icon" id="refreshBtn" title="Refresh">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="metrics-section">
+                        <h3>Key Metrics</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card water-metric">
+                                <div class="metric-icon">
+                                    <i class="fas fa-droplet"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <p class="metric-label">Water Usage</p>
+                                    <p class="metric-value" id="waterUsage">-</p>
+                                    <p class="metric-unit">ML/year</p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card effectiveness-metric">
+                                <div class="metric-icon">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <p class="metric-label">Water Usage Effectiveness</p>
+                                    <p class="metric-value" id="wueValue">-</p>
+                                    <p class="metric-unit">L/kWh</p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card region-metric">
+                                <div class="metric-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <p class="metric-label">Region</p>
+                                    <p class="metric-value" id="regionValue">-</p>
+                                    <p class="metric-unit">Location</p>
+                                </div>
+                            </div>
+
+                            <div class="metric-card risk-metric">
+                                <div class="metric-icon">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="metric-content">
+                                    <p class="metric-label">Risk Level</p>
+                                    <p class="metric-value" id="riskLevel">-</p>
+                                    <p class="metric-unit">Assessment</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="charts-section">
+                        <div class="charts-grid">
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-chart-pie"></i> Water Usage Distribution</h3>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="waterChart"></canvas>
+                                </div>
+                            </div>
+
+                            <div class="chart-card">
+                                <div class="chart-header">
+                                    <h3><i class="fas fa-chart-line"></i> Strategy Impact</h3>
+                                </div>
+                                <div class="chart-container">
+                                    <canvas id="impactChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="recommendations-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-lightbulb"></i> Water-Saving Recommendations</h3>
+                            <p class="section-subtitle">Actionable insights for reducing water consumption</p>
+                        </div>
+                        <div id="recommendationsList" class="recommendations-list">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="results-actions">
+                        <button id="newAnalysisBtn" class="btn btn-secondary">
+                            <i class="fas fa-plus"></i>
+                            <span>Analyze Another PDF</span>
+                        </button>
+                        <button id="exportBtn" class="btn btn-secondary">
+                            <i class="fas fa-download"></i>
+                            <span>Export Results</span>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Error Section -->
+                <div id="errorSection" class="error-section hidden">
+                    <div class="error-card">
+                        <div class="error-icon">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <h3>Oops! Something went wrong</h3>
+                        <p id="errorMessage"></p>
+                        <button class="btn btn-secondary" onclick="resetAnalysis()">
+                            <i class="fas fa-redo"></i> Try Again
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
 
         <!-- Footer -->
         <footer class="footer">
-            <p>&copy; 2026 AquaMetric AI. Water Sustainability Analysis Platform.</p>
+            <div class="footer-content">
+                <p>&copy; 2026 AquaMetric AI. Water Sustainability Analysis Platform.</p>
+                <div class="footer-links">
+                    <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="#" title="Documentation"><i class="fas fa-book"></i></a>
+                </div>
+            </div>
         </footer>
     </div>
 

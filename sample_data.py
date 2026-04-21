@@ -87,28 +87,62 @@ def create_sample_analysis_result():
 
 
 def get_sample_water_scarcity_context():
-    """Get sample water scarcity context for a region."""
+    """Get sample water scarcity context with Aqueduct 4.0 indicators."""
     regions = {
         "United States": {
             "water_stress_level": "Low",
             "water_scarcity_index": 0.3,
-            "population_millions": 331
+            "population_millions": 331,
+            "bws_score": 1.8,
+            "bws_label": "Low-Medium",
+            "overall_risk_score": 1.9,
+            "overall_risk_label": "Low-Medium",
         },
         "North America": {
             "water_stress_level": "Low-Medium",
             "water_scarcity_index": 0.4,
-            "population_millions": 580
+            "population_millions": 580,
+            "bws_score": 1.5,
+            "bws_label": "Low-Medium",
+            "overall_risk_score": 1.8,
+            "overall_risk_label": "Low-Medium",
         },
         "Europe": {
             "water_stress_level": "Low",
             "water_scarcity_index": 0.35,
-            "population_millions": 450
+            "population_millions": 450,
+            "bws_score": 1.2,
+            "bws_label": "Low-Medium",
+            "overall_risk_score": 1.4,
+            "overall_risk_label": "Low",
         },
         "Asia": {
             "water_stress_level": "High",
             "water_scarcity_index": 0.75,
-            "population_millions": 4630
-        }
+            "population_millions": 4630,
+            "bws_score": 3.5,
+            "bws_label": "High",
+            "overall_risk_score": 3.0,
+            "overall_risk_label": "High",
+        },
+        "India": {
+            "water_stress_level": "High",
+            "water_scarcity_index": 0.90,
+            "population_millions": 1408,
+            "bws_score": 4.0,
+            "bws_label": "High",
+            "overall_risk_score": 3.6,
+            "overall_risk_label": "High",
+        },
+        "Middle East": {
+            "water_stress_level": "Very High",
+            "water_scarcity_index": 0.98,
+            "population_millions": 411,
+            "bws_score": 4.8,
+            "bws_label": "Extremely High",
+            "overall_risk_score": 3.5,
+            "overall_risk_label": "High",
+        },
     }
     return regions
 

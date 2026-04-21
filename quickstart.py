@@ -111,7 +111,7 @@ def check_files():
         'backend/data_processor.py',
         'backend/rag_pipeline.py',
         'backend/agent.py',
-        'data/water_scarcity.csv'
+        'data/aqueduct_water_risk.csv'
     ]
     
     all_ok = True

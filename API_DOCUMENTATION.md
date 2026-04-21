@@ -75,25 +75,19 @@ curl -X POST http://localhost:5000/analyze \
 {
   "success": true,
   "data": {
-    "water_usage": "1500000",
-    "WUE": "0.85",
-    "region": "United States",
+    "company": "Tech Corp",
+    "report_year": "2023",
+    "water_usage": 15000.0,
+    "WUE": 0.19,
+    "recycled_water": 2500.0,
+    "region": "Global Operations",
     "risk_level": "Medium",
+    "summary": "Technical executive insight goes here.",
     "recommendations": [
       {
-        "strategy": "Cooling Optimization",
-        "description": "Implement machine learning-based cooling systems...",
-        "impact": "18"
-      },
-      {
-        "strategy": "Recycled Water Usage",
-        "description": "Install water recycling systems...",
-        "impact": "22"
-      },
-      {
-        "strategy": "Efficiency Improvements",
-        "description": "Conduct annual water audits...",
-        "impact": "15"
+        "strategy": "Cooling Tower Optimization",
+        "description": "Implement high-precision sensors for drift reduction...",
+        "impact": 15
       }
     ]
   }
@@ -128,12 +122,13 @@ curl -X POST http://localhost:5000/analyze \
 - 500 Internal Server Error - Server error
 
 **Processing Steps:**
-1. PDF text extraction using PyMuPDF
-2. Table extraction using Camelot
-3. Vector store creation using ChromaDB
-4. Similarity search for context retrieval
-5. AI analysis using OpenAI GPT-4o-mini
-6. Generation of water-saving recommendations
+1. PDF text extraction using PyMuPDF and Camelot.
+2. Vector store creation and contextual RAG retrieval.
+3. **Multi-Pass Analysis**:
+   - **Deterministic Pass**: Regex-first extraction of numerical metrics.
+   - **Heuristic Pass**: Weighted risk scoring (Usage + WUE - Recycling).
+   - **Consultant Pass**: Technical recommendation generation.
+4. Final JSON formatting and normalization.
 
 ---
 
@@ -165,15 +160,19 @@ curl http://localhost:5000/health
 {
   "success": boolean,
   "data": {
-    "water_usage": string,           // ML/year or liters
-    "WUE": string,                   // L/kWh
-    "region": string,                // Location/Country
-    "risk_level": string,            // "Low", "Medium", "High"
+    "company": string,
+    "report_year": string,
+    "water_usage": float,             // Megaliters (ML)
+    "WUE": float,                     // L/kWh
+    "recycled_water": float|null,     // ML/year
+    "region": string,                 // Country or "Global Operations"
+    "risk_level": string,             // "Low", "Medium", "High"
+    "summary": string,                // Executive summary
     "recommendations": [
       {
-        "strategy": string,          // Strategy name
-        "description": string,       // Implementation details
-        "impact": string             // Estimated % reduction
+        "strategy": string,           // Advanced strategy title
+        "description": string,        // Technical logic
+        "impact": integer             // Reduction estimate (5-30)
       }
     ]
   }

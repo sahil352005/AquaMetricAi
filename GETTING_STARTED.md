@@ -115,35 +115,34 @@ You should see the beautiful AquaMetric AI dashboard!
 
 ### 1. Prepare a PDF
 You need a PDF file with water/sustainability metrics. For testing, use one with:
-- Water usage data (e.g., "1.5M liters", "1500 ML")
-- WUE data (e.g., "0.85 L/kWh")
-- Location/region name
+- Water usage data (e.g., "15,637 ML", "5 Billion Gallons")
+- WUE data (e.g., "0.19 L/kWh")
+- Location or country name
+- Recycled water stats (optional)
 
 **Sample content:**
 ```
-Company Sustainability Report
-
-Data Center Water Usage: 1,500,000 ML/year
-Water Usage Effectiveness: 0.85 L/kWh
-Location: United States - Virginia
-
-Our facility uses 1.5M liters annually...
+Meta Sustainability Summary
+Reporting Year: 2023
+Total water withdrawal: 15,637 Megaliters (ML)
+Water Usage Effectiveness (WUE): 0.19 L/kWh
+Locations: Global operations across USA, Europe, and Asia.
+Recycled Water: 3,421 ML reused in facilities.
 ```
 
 ### 2. Upload PDF
-- Click the upload area
-- Drag and drop your PDF OR click to browse
-- Select your file
+- Click the upload area or drag and drop your PDF.
 
 ### 3. Click "Analyze PDF"
-- Wait for analysis (15-30 seconds)
-- Watch the loading spinner
+- The system will run a multi-pass analysis:
+  - **Pass 1**: Deterministic extraction of metrics.
+  - **Pass 2**: Water stress lookup via WRI Aqueduct 4.0.
+  - **Pass 3**: Premium recommendation generation.
 
 ### 4. View Results
-- **Metrics cards** show extracted data
-- **Charts** visualize strategy impact
-- **Recommendations** suggest 3 water-saving strategies
-- **Export button** downloads results
+- **Metrics cards**: Show `water_usage`, `WUE`, `region`, and `risk_level`.
+- **Charts**: New **Water Usage Distribution** chart shows current vs. recycled water.
+- **Recommendations**: 3 high-value engineering strategies tailored to the risk level.
 
 ### 5. Export Results
 Click "Export Results" to download:

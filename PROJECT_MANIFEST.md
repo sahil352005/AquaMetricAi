@@ -37,7 +37,7 @@ AquaMetricAi/
 │   └── script.js                       # Interactive JavaScript (600+ lines)
 │
 ├── 📁 data/ (Datasets)
-│   └── water_scarcity.csv              # Kaggle water scarcity dataset (27 countries)
+│   └── aqueduct_water_risk.csv          # WRI Aqueduct 4.0 rankings (195+ Countries)
 │
 └── 📁 vectorstore/ (Auto-created)
     └── [ChromaDB storage - created at runtime]
@@ -49,12 +49,12 @@ AquaMetricAi/
 
 | Component | Files | Total Lines | Purpose |
 |-----------|-------|------------|---------|
-| Backend Modules | 6 | 1,100+ | PDF extraction, RAG, AI analysis |
+| Backend Modules | 6 | 1,400+ | PDF extraction, RAG, AI analysis |
 | Frontend | 3 | 1,700+ | HTML/CSS/JS dashboard |
 | Configuration | 4 | 300+ | Settings, logging, utilities |
-| Documentation | 3 | 1,000+ | README, API docs, this manifest |
-| Data | 1 | 27 | Water scarcity dataset |
-| **TOTAL** | **20** | **4,000+** | **Complete production system** |
+| Documentation | 5 | 2,000+ | All Markdown guides |
+| Data | 1 | 195 | WRI Aqueduct 4.0 Dataset |
+| **TOTAL** | **25+** | **5,500+** | **Complete production system** |
 
 ---
 

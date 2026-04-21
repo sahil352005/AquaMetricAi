@@ -101,7 +101,7 @@ Welcome to AquaMetric AI! This index helps you navigate all available documentat
 
 | File | Purpose | Records |
 |------|---------|---------|
-| [data/water_scarcity.csv](data/water_scarcity.csv) | Water scarcity dataset | 27 countries |
+| [data/aqueduct_water_risk.csv](data/aqueduct_water_risk.csv) | WRI Aqueduct 4.0 rankings | 195+ Countries |
 
 ---
 
@@ -221,7 +221,8 @@ DOCUMENTATION HIERARCHY
 │   └── static/script.js (Interactivity)
 │
 └── Data
-    └── data/water_scarcity.csv (Dataset)
+└── Data
+    └── data/aqueduct_water_risk.csv (WRI Aqueduct Rankings)
 ```
 
 ---

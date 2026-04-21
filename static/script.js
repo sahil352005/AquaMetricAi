@@ -142,7 +142,12 @@ function displayResults(data) {
     document.getElementById('regionValue').textContent = region.length > 30 ? region.substring(0, 30) + '...' : region;
     document.getElementById('regionValue').title = region;
     const risk = data.risk_level || 'Unknown';
-    const riskShort = risk.includes('High') ? 'High' : risk.includes('Low') ? 'Low' : risk.includes('Medium') ? 'Medium' : risk;
+    let riskShort = 'Unknown';
+    if (typeof risk === 'string') {
+        riskShort = risk.includes('High') ? 'High' : risk.includes('Low') ? 'Low' : risk.includes('Medium') ? 'Medium' : risk;
+    } else {
+        riskShort = String(risk);
+    }
     document.getElementById('riskLevel').textContent = riskShort;
 
     // Update risk level color
@@ -311,23 +316,37 @@ function createWaterChart(data) {
     }
 
     // Parse water usage
-    const waterUsageNum = parseFloat(data.water_usage) || 1000;
-    const reduction = waterUsageNum * 0.15; // Estimated 15% reduction
+    const waterUsageNum = parseFloat(data.water_usage) || 0;
+    const recycledWaterNum = parseFloat(data.recycled_water) || 0;
+    
+    // Calculate potential reduction (if not already recycled)
+    const potentialReduction = waterUsageNum * 0.15;
+    
+    const labels = ['Current Usage'];
+    const chartData = [waterUsageNum];
+    const colors = ['rgba(239, 68, 68, 0.75)'];
+    const borders = ['#ef4444'];
+    
+    if (recycledWaterNum > 0) {
+        labels.push('Recycled Water');
+        chartData.push(recycledWaterNum);
+        colors.push('rgba(0, 212, 255, 0.75)');
+        borders.push('#00d4ff');
+    }
+    
+    labels.push('Potential Reduction');
+    chartData.push(potentialReduction);
+    colors.push('rgba(16, 185, 129, 0.75)');
+    borders.push('#10b981');
 
     waterChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
-            labels: ['Current Usage', 'Potential Reduction'],
+            labels: labels,
             datasets: [{
-                data: [waterUsageNum, reduction],
-                backgroundColor: [
-                    'rgba(239, 68, 68, 0.75)',
-                    'rgba(16, 185, 129, 0.75)',
-                ],
-                borderColor: [
-                    '#ef4444',
-                    '#10b981',
-                ],
+                data: chartData,
+                backgroundColor: colors,
+                borderColor: borders,
                 borderWidth: 2,
             }],
         },

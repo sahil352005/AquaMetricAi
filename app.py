@@ -148,18 +148,36 @@ def analyze():
                 analysis_result = agent_instance.extract_metrics_only(full_text)
 
                 if analysis_result:
-                    water_usage = analysis_result.get('water_usage', 'Unknown')
-                    wue = analysis_result.get('WUE', 'Unknown')
-                    region = analysis_result.get('region', 'Unknown')
+                    # Parse metrics defensively
+                    def parse_to_float(val):
+                        if val is None: return 0.0
+                        if isinstance(val, (int, float)): return float(val)
+                        try:
+                            # Remove commas, currency, units, etc.
+                            clean_val = str(val).replace(',', '').split(' ')[0]
+                            return float(''.join(c for c in clean_val if c.isdigit() or c == '.'))
+                        except: return 0.0
 
-                    recommendations = agent_instance.generate_recommendations(water_usage, wue, region)
+                    water_usage = parse_to_float(analysis_result.get('water_usage'))
+                    wue = parse_to_float(analysis_result.get('WUE'))
+                    region = analysis_result.get('region', 'Global Operations')
+
+                    recommendations = agent_instance.generate_recommendations(
+                        water_usage, wue, region, risk_level="Medium"
+                    )
                     analysis_result['recommendations'] = recommendations or []
                     analysis_result['risk_level'] = data_processor.estimate_risk_level(
-                        float(water_usage) if isinstance(water_usage, str) and water_usage.replace('.', '', 1).isdigit() else 0,
-                        region
+                        water_usage, region, wue=wue
                     )
+                    # Update metrics to ensure they are numeric for the frontend
+                    analysis_result['water_usage'] = water_usage
+                    analysis_result['WUE'] = wue
                 else:
                     return jsonify({'error': 'Failed to analyze PDF'}), 400
+            
+            # Ensure risk_level fallback for LLM direct results
+            if 'risk_level' not in analysis_result:
+                analysis_result['risk_level'] = 'Medium'
 
             logger.info("Analysis completed successfully")
             return jsonify({'success': True, 'data': analysis_result})

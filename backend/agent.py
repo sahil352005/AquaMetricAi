@@ -11,60 +11,90 @@ from langchain_groq import ChatGroq
 import config
 from langchain.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import JsonOutputParser
+from backend.data_processor import DataProcessor
 
 logger = logging.getLogger(__name__)
 
-SYSTEM_PROMPT = """You are a sustainability data analyst extracting water metrics from corporate sustainability reports.
+SYSTEM_PROMPT = """You are **AquaMetric AI**, an expert Sustainability Intelligence Agent specializing in **data center water usage analysis**.
 
-TASK: Extract the following fields from the provided report sections.
+Your role is to analyze uploaded corporate sustainability reports, ESG disclosures, annual reports, and environmental PDFs to extract water-related metrics, assess sustainability risk, and generate actionable recommendations for reducing water consumption in data centers.
 
-━━━ FIELD 1: water_usage (Total Annual Water Withdrawal in ML) ━━━
-- Find the GROSS total water withdrawal for the ENTIRE company for the report year.
-- PRIORITY: "total water withdrawal" > "water withdrawal" > "water consumption"
-- NEVER use: "net water", "water returned to source", "water consumption (net)", "water restored"
-- These are DIFFERENT numbers — always pick the LARGEST gross withdrawal figure.
+---
 
-UNIT CONVERSIONS (memorize these):
-  • "X billion liters"           → X × 1,000        (8.3 billion liters = 8,300 ML)
-  • "X million liters"           → X                (no conversion: 1 million liters = 1 ML)
-  • "X ML" or "X megalitres"     → X                (no conversion)
-  • "X gigalitres" or "X GL"     → X × 1,000        (8.3 GL = 8,300 ML)
-  • "X thousand cubic meters"    → X                (no conversion: 1 thousand m³ = 1 ML)
-  • "X cubic meters"             → X ÷ 1,000        (8,300,000 m³ = 8,300 ML)
-  • "X million gallons"          → X × 3.785        (8,653 million gallons = 32,740 ML)
-  • "X billion gallons"          → X × 3,785        (rare)
+## 🎯 PRIMARY OBJECTIVE
 
-SANITY CHECK: Large tech companies (Google, Meta, Microsoft, Amazon) withdraw 1,000–35,000 ML/year.
-If your answer is above 100,000 ML, you made a unit error. Recheck and fix it.
-NOTE: Google reports in million gallons. 8,653 million gallons = 32,740 ML.
+From the provided report content, identify and analyze:
+1. Total annual water withdrawal / water usage
+2. Water Usage Effectiveness (WUE)
+3. Data center-specific water consumption (if available)
+4. Recycled / reused water volume
+5. Water consumption in high-stress regions
+6. Facility locations / operating regions
+7. Sustainability targets and commitments
+8. Risks related to water scarcity
+9. Optimization opportunities
 
-━━━ FIELD 2: WUE (Water Usage Effectiveness in L/kWh) ━━━
-- Look for "WUE", "water usage effectiveness", "liters per kilowatt-hour"
-- Typical range: 0.10 – 2.00 L/kWh
-- Return plain decimal only (e.g. 0.26)
+---
 
-━━━ FIELD 3: region ━━━
-- Company's primary operating region or headquarters country
+## 📊 EXTRACTION RULES
 
-━━━ FIELD 4: risk_level ━━━
-- "Low", "Medium", or "High" only — based on water usage volume and regional water stress
+### FIELD 1: water_usage
+Extract the **gross total annual water withdrawal** for the latest reporting year.
+Priority: total water withdrawal > water withdrawal > freshwater withdrawal > water usage > water consumption.
+Convert all values to **ML/year (Megaliters)**.
+- 1 billion gallons = 3785 ML
+- 1 million gallons = 3.785 ML
+- 1 thousand m³ = 1 ML
+- 1 GL = 1000 ML
 
-━━━ FIELD 5: recommendations ━━━
-- 3 specific strategies tailored to this company's actual metrics and goals mentioned in the report
-- Each must have a DIFFERENT impact percentage (integer, no % sign)
+### FIELD 2: WUE
+Extract Water Usage Effectiveness (L/kWh). Expected range: 0.05 to 5.00.
 
-Return ONLY valid JSON, no markdown, no extra text:
+### FIELD 3: recycled_water
+Extract **total recycled/reused water volume** in **ML/year**. Return null if not found.
+
+### FIELD 4: region
+Return primary operating geography, HQ country, or "Multi-Region (USA, EMEA, APAC)" / "Global Operations".
+Avoid "Unknown"; prioritize listing major continents if multiple regions are mentioned.
+
+### FIELD 5: recommendations
+Generate exactly 3 practical engineering recommendations.
+Styles: McKinsey/Deloitte technical consultant.
+Focus: Cooling towers, HVAC, liquid cooling, AI thermal load balancing, rainwater harvesting, etc.
+Tailor by Risk: 
+- High: Urgent reduction/balancing.
+- Medium: Efficiency/process upgrades.
+- Low: Innovation/Leadership.
+
+---
+
+## 🧠 ANALYSIS RULES
+1. Prefer latest reporting year. 
+2. If multiple values, choose company total.
+3. Use data center metrics over office metrics.
+4. If "region" is unknown, return "Global Operations".
+5. Never fabricate/hallucinate numbers.
+
+---
+
+## 📤 OUTPUT FORMAT
+Return ONLY valid JSON:
 {{
-    "water_usage": "number",
-    "WUE": "number",
-    "region": "string",
-    "risk_level": "Low|Medium|High",
-    "recommendations": [
-        {{"strategy": "name", "description": "how to implement", "impact": "integer"}},
-        {{"strategy": "name", "description": "how to implement", "impact": "integer"}},
-        {{"strategy": "name", "description": "how to implement", "impact": "integer"}}
-    ]
-}}"""
+  "company": "string",
+  "report_year": "string",
+  "water_usage": "number",
+  "WUE": "number",
+  "recycled_water": "number or null",
+  "region": "string",
+  "risk_level": "Low|Medium|High",
+  "summary": "2 line executive insight",
+  "recommendations": [
+    {{"strategy": "Short premium title", "description": "Technical enterprise recommendation in one sentence", "impact": 15}},
+    {{"strategy": "Short premium title", "description": "Technical enterprise recommendation in one sentence", "impact": 12}},
+    {{"strategy": "Short premium title", "description": "Technical enterprise recommendation in one sentence", "impact": 20}}
+  ]
+}}
+"""
 
 
 # ---------------------------------------------------------------------------
@@ -224,6 +254,8 @@ class WaterSustainabilityAgent:
         self.config = config.config
         self.llm = None
         self.parser = JsonOutputParser()
+        self.data_processor = DataProcessor()
+        self.data_processor.load_aqueduct_dataset() # Load for risk calculations
 
         provider = self.config.LLM_PROVIDER
         model = self.config.LLM_MODEL
@@ -300,48 +332,80 @@ REPORT BEGINNING (company/region context):
 
             result = json.loads(response_text)
 
+            # --- Region Fallback Fix ---
+            if not result.get("region") or str(result["region"]).lower() == "unknown":
+                result["region"] = "Global Operations"
+
             required_fields = ["water_usage", "WUE", "region", "risk_level", "recommendations"]
             if not all(field in result for field in required_fields):
                 self.logger.error("Invalid response structure from LLM")
                 return None
 
-            # Clamp recommendation impact values to sane range (5-40%)
-            for rec in result.get("recommendations", []):
-                try:
-                    impact = float(str(rec.get("impact", 10)))
-                    if impact > 40 or impact < 1:
-                        rec["impact"] = str(min(40, max(5, round(impact % 40) or 15)))
-                except (ValueError, TypeError):
-                    rec["impact"] = "15"
-
-            # ── Override with regex extraction if available ──
-            # Regex is deterministic and more reliable than LLM for specific numbers
+            # ── 1. Regex Sanity Overrides ──
+            # Extract metrics using deterministic regex before any further logic
             regex_withdrawal = _extract_water_withdrawal_regex(pdf_text)
             if regex_withdrawal is not None:
-                llm_value = float(result.get("water_usage", 0) or 0)
-                # Use regex value if LLM value differs by more than 20%
+                llm_value = float(str(result.get("water_usage", 0) or 0))
                 if llm_value == 0 or abs(regex_withdrawal - llm_value) / max(regex_withdrawal, llm_value) > 0.20:
-                    self.logger.info(
-                        f"Overriding LLM water_usage ({llm_value}) with regex value ({regex_withdrawal})"
-                    )
-                    result["water_usage"] = str(regex_withdrawal)
+                    result["water_usage"] = regex_withdrawal
 
             regex_wue = _extract_wue_regex(pdf_text)
             if regex_wue is not None:
-                llm_wue = float(result.get("WUE", 0) or 0)
+                llm_wue = float(str(result.get("WUE", 0) or 0))
                 if llm_wue == 0 or abs(regex_wue - llm_wue) / max(regex_wue, llm_wue) > 0.10:
-                    self.logger.info(f"Overriding LLM WUE ({llm_wue}) with regex value ({regex_wue})")
-                    result["WUE"] = str(regex_wue)
+                    result["WUE"] = regex_wue
 
-            # Final sanity check: if > 200,000 ML the LLM returned raw liters
+            # Final sanity check for raw liters
             try:
                 wu = float(result["water_usage"])
                 if wu > 200_000:
-                    corrected = round(wu / 1_000, 2)
-                    self.logger.warning(f"Sanity correction: {wu} → {corrected} ML")
-                    result["water_usage"] = str(corrected)
-            except (ValueError, TypeError):
-                pass
+                    result["water_usage"] = round(wu / 1_000, 2)
+            except: pass
+
+            # ── 2. Data-Driven Risk Assessment ──
+            # Use corrected metrics to calculate risk level
+            try:
+                usage = float(str(result.get("water_usage", 0) or 0))
+                wue = float(str(result.get("WUE", 0.3) or 0.3))
+                recycled_ml = result.get("recycled_water")
+                
+                recycled_ratio = None # Default to None to avoid penalties if not found
+                if recycled_ml is not None and usage > 0:
+                    recycled_ratio = (float(recycled_ml) / usage) * 100
+
+                # Data-driven risk calculation using Aqueduct + Weighted Heuristic
+                calculated_risk = self.data_processor.estimate_risk_level(
+                    water_usage=usage,
+                    water_stress=result.get("region", "Global"),
+                    wue=wue,
+                    recycled_water_ratio=recycled_ratio
+                )
+                
+                # Final calculated risk stored back to result
+                result["risk_level"] = calculated_risk
+
+                # --- High-Value Recommendation Second Pass ---
+                # Regenerate recommendations using the finalized risk and corrected metrics
+                premium_recs = self.generate_recommendations(
+                    water_usage=usage,
+                    wue=wue,
+                    region=result.get("region", "Global Operations"),
+                    risk_level=calculated_risk,
+                    recycled_water=recycled_ml
+                )
+                if premium_recs:
+                    result["recommendations"] = premium_recs
+
+            except Exception as e:
+                self.logger.error(f"Error in data-driven refinement: {str(e)}")
+
+            # Final impact clamping just in case
+            for rec in result.get("recommendations", []):
+                try:
+                    impact = int(float(str(rec.get("impact", 10))))
+                    rec["impact"] = min(30, max(5, impact))
+                except:
+                    rec["impact"] = 15
 
             self.logger.info("Analysis completed successfully")
             return result
@@ -396,25 +460,50 @@ REPORT BEGINNING (company/region context):
         self,
         water_usage: float,
         wue: float,
-        region: str
+        region: str,
+        risk_level: str = "Medium",
+        recycled_water: Any = None
     ) -> Optional[list]:
         """Generate water-saving recommendations based on metrics."""
         try:
-            recommendation_prompt = f"""Based on these data center metrics, generate 3 specific water-saving recommendations:
+            recommendation_template = """You are AquaMetric AI, a senior sustainability consultant specializing in data center water optimization.
+Generate 3 premium, technical, high-value recommendations for reducing water consumption based on these metrics:
 
-Water Usage: {water_usage} ML/year
-WUE: {wue} L/kWh
-Region: {region}
+* Water Usage: {water_usage} ML/year
+* WUE: {wue} L/kWh
+* Region: {region}
+* Risk Level: {risk_level}
+* Recycled Water: {recycled_water}
 
-Return as JSON array with fields: strategy, description, impact (integer % reduction 5-25)."""
+INSTRUCTIONS:
+1. FOCUS: Cooling systems, thermal management, liquid cooling, evaporative cooling, HVAC, recycled water systems, AI-driven optimization, etc.
+2. STYLE: Professional, enterprise-level (McKinsey/Deloitte style).
+3. ACTIONABLE: Each must be realistic and implementable.
+4. IMPACT: Integer reduction estimate between 5 and 30.
+5. TAILOR BY RISK:
+   - High Risk: Urgent reduction, regional workload balancing, aggressive recycling.
+   - Medium Risk: Efficiency upgrades and process optimization.
+   - Low Risk: Maintaining leadership, future-proofing, and innovation.
+
+Return ONLY valid JSON array:
+[
+  {{"strategy": "Short premium title", "description": "Technical enterprise recommendation in one sentence", "impact": 15}},
+  ...
+]"""
 
             prompt = ChatPromptTemplate.from_messages([
-                ("system", "You are a sustainability engineer. Provide practical recommendations."),
-                ("human", recommendation_prompt),
+                ("system", "You are AquaMetric AI, a senior sustainability consultant."),
+                ("human", recommendation_template),
             ])
 
             chain = prompt | self.llm
-            response = chain.invoke({})
+            response = chain.invoke({
+                "water_usage": water_usage,
+                "wue": wue,
+                "region": region,
+                "risk_level": risk_level,
+                "recycled_water": recycled_water
+            })
             response_text = re.sub(r'^```(?:json)?\s*', '', response.content.strip())
             response_text = re.sub(r'\s*```$', '', response_text)
             # Extract JSON array

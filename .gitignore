@@ -63,11 +63,11 @@ logs/
 .coverage
 htmlcov/
 
-# Application specific
-uploads/
-*.pdf
-*.csv
-!data/water_scarcity.csv
+# # Application specific
+# uploads/
+# *.pdf
+# *.csv
+# !data/water_scarcity.csv
 
 # OS
 .DS_Store

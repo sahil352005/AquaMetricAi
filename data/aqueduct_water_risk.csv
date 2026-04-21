@@ -1,0 +1,196 @@
+country,iso_a3,region,bws_score,bws_label,bwd_score,iav_score,sev_score,overall_risk_score,overall_risk_label,population_millions,water_stress_level,water_scarcity_index
+Afghanistan,AFG,South Asia,4.2,Extremely High,3.8,3.5,4.1,3.9,High,41.1,Very High,0.95
+Albania,ALB,Europe,1.5,Low-Medium,1.2,2.1,2.5,1.8,Low-Medium,2.8,Low,0.35
+Algeria,DZA,North Africa,4.5,Extremely High,4.2,3.0,3.8,3.9,High,45.6,Very High,0.98
+Angola,AGO,Sub-Saharan Africa,0.4,Low,0.3,2.8,3.2,1.7,Low-Medium,35.6,Low,0.15
+Argentina,ARG,South America,2.1,Medium-High,1.5,2.3,2.7,2.2,Medium-High,46.0,Medium,0.55
+Armenia,ARM,West Asia,3.8,High,3.2,2.8,3.5,3.3,High,3.0,High,0.82
+Australia,AUS,Oceania,3.5,High,2.8,3.2,3.5,3.3,High,26.0,High,0.80
+Austria,AUT,Europe,0.8,Low,0.5,1.5,2.0,1.2,Low,9.1,Low,0.18
+Azerbaijan,AZE,West Asia,3.9,High,3.5,2.5,3.2,3.3,High,10.2,High,0.85
+Bahrain,BHR,Middle East,5.0,Extremely High,5.0,1.0,1.5,3.1,High,1.5,Very High,1.0
+Bangladesh,BGD,South Asia,1.8,Low-Medium,1.5,2.0,4.5,2.5,Medium-High,170.0,Medium,0.50
+Belarus,BLR,Europe,0.5,Low,0.3,1.5,2.0,1.1,Low,9.4,Low,0.12
+Belgium,BEL,Europe,2.8,Medium-High,2.0,1.8,2.2,2.2,Medium-High,11.6,Medium,0.60
+Benin,BEN,Sub-Saharan Africa,0.6,Low,0.4,2.5,3.8,1.8,Low-Medium,13.4,Low,0.18
+Bhutan,BTN,South Asia,0.3,Low,0.2,1.8,3.5,1.5,Low-Medium,0.8,Low,0.10
+Bolivia,BOL,South America,0.5,Low,0.3,2.2,3.0,1.5,Low-Medium,12.1,Low,0.15
+Bosnia and Herzegovina,BIH,Europe,1.0,Low,0.7,2.0,2.3,1.5,Low-Medium,3.3,Low,0.22
+Botswana,BWA,Sub-Saharan Africa,3.2,High,2.8,3.5,3.8,3.3,High,2.6,High,0.78
+Brazil,BRA,South America,1.2,Low-Medium,0.8,2.0,2.5,1.6,Low-Medium,215.0,Low,0.30
+Brunei,BRN,Southeast Asia,0.2,Low,0.1,1.5,2.5,1.1,Low,0.4,Low,0.08
+Bulgaria,BGR,Europe,1.8,Low-Medium,1.2,2.2,2.5,1.9,Low-Medium,6.9,Low,0.38
+Burkina Faso,BFA,Sub-Saharan Africa,1.5,Low-Medium,1.2,3.0,4.2,2.5,Medium-High,22.1,Medium,0.45
+Burundi,BDI,Sub-Saharan Africa,0.8,Low,0.5,2.5,3.0,1.7,Low-Medium,12.9,Low,0.20
+Cambodia,KHM,Southeast Asia,0.4,Low,0.3,2.0,4.0,1.7,Low-Medium,17.0,Low,0.12
+Cameroon,CMR,Sub-Saharan Africa,0.3,Low,0.2,2.0,3.0,1.4,Low,27.9,Low,0.10
+Canada,CAN,North America,1.0,Low,0.5,1.8,2.5,1.5,Low-Medium,38.9,Low,0.20
+Central African Republic,CAF,Sub-Saharan Africa,0.1,Low,0.1,2.2,3.2,1.4,Low,5.5,Low,0.05
+Chad,TCD,Sub-Saharan Africa,1.2,Low-Medium,1.0,3.5,4.5,2.6,Medium-High,17.7,Medium,0.40
+Chile,CHL,South America,3.8,High,3.2,2.5,3.0,3.1,High,19.5,High,0.85
+China,CHN,East Asia,3.5,High,3.0,2.5,3.0,3.0,High,1412.0,High,0.85
+Colombia,COL,South America,0.5,Low,0.3,1.8,2.5,1.3,Low,51.9,Low,0.15
+Comoros,COM,Sub-Saharan Africa,0.6,Low,0.4,2.0,3.0,1.5,Low-Medium,0.9,Low,0.15
+Republic of the Congo,COG,Sub-Saharan Africa,0.1,Low,0.1,1.5,2.5,1.1,Low,6.0,Low,0.05
+Costa Rica,CRI,Central America,0.3,Low,0.2,1.8,3.0,1.3,Low,5.2,Low,0.10
+Cote d'Ivoire,CIV,Sub-Saharan Africa,0.5,Low,0.3,2.2,3.2,1.6,Low-Medium,28.2,Low,0.15
+Croatia,HRV,Europe,0.6,Low,0.4,1.8,2.2,1.3,Low,3.9,Low,0.15
+Cuba,CUB,Caribbean,1.5,Low-Medium,1.2,2.5,3.0,2.1,Medium-High,11.3,Medium,0.40
+Cyprus,CYP,Europe,3.8,High,3.5,2.0,2.5,3.0,High,1.2,High,0.82
+Czech Republic,CZE,Europe,1.2,Low-Medium,0.8,1.8,2.2,1.5,Low-Medium,10.5,Low,0.28
+Democratic Republic of Congo,COD,Sub-Saharan Africa,0.1,Low,0.1,1.5,2.5,1.1,Low,99.0,Low,0.04
+Denmark,DNK,Europe,1.5,Low-Medium,1.0,1.5,2.0,1.5,Low-Medium,5.9,Low,0.32
+Djibouti,DJI,East Africa,4.8,Extremely High,4.5,3.0,2.5,3.7,High,1.0,Very High,0.98
+Dominican Republic,DOM,Caribbean,1.8,Low-Medium,1.5,2.5,3.2,2.3,Medium-High,11.1,Medium,0.48
+Ecuador,ECU,South America,0.4,Low,0.3,1.8,2.8,1.3,Low,18.0,Low,0.12
+Egypt,EGY,North Africa,4.8,Extremely High,4.8,2.0,2.5,3.5,High,104.0,Very High,1.0
+El Salvador,SLV,Central America,1.2,Low-Medium,0.8,2.5,3.5,2.0,Low-Medium,6.3,Low,0.30
+Equatorial Guinea,GNQ,Sub-Saharan Africa,0.1,Low,0.1,1.5,2.5,1.1,Low,1.6,Low,0.05
+Eritrea,ERI,East Africa,4.5,Extremely High,4.0,3.5,3.8,3.9,High,3.6,Very High,0.95
+Estonia,EST,Europe,0.5,Low,0.3,1.5,2.0,1.1,Low,1.3,Low,0.12
+Eswatini,SWZ,Sub-Saharan Africa,2.5,Medium-High,2.0,2.8,3.2,2.6,Medium-High,1.2,Medium,0.58
+Ethiopia,ETH,East Africa,1.8,Low-Medium,1.5,3.0,4.0,2.6,Medium-High,123.0,Medium,0.50
+Fiji,FJI,Oceania,0.2,Low,0.1,1.8,3.0,1.3,Low,0.9,Low,0.08
+Finland,FIN,Europe,0.3,Low,0.2,1.2,1.8,0.9,Low,5.5,Low,0.08
+France,FRA,Europe,1.2,Low-Medium,0.8,1.5,2.0,1.4,Low,67.4,Low,0.25
+Gabon,GAB,Sub-Saharan Africa,0.1,Low,0.1,1.5,2.2,1.0,Low,2.4,Low,0.05
+Gambia,GMB,Sub-Saharan Africa,1.0,Low,0.7,3.0,4.0,2.2,Medium-High,2.7,Low,0.25
+Georgia,GEO,West Asia,1.5,Low-Medium,1.0,2.2,2.8,1.9,Low-Medium,3.7,Low,0.35
+Germany,DEU,Europe,1.5,Low-Medium,1.0,1.5,2.0,1.5,Low-Medium,83.2,Low,0.35
+Ghana,GHA,Sub-Saharan Africa,0.8,Low,0.5,2.5,3.5,1.8,Low-Medium,33.5,Low,0.22
+Greece,GRC,Europe,2.8,Medium-High,2.2,2.0,2.5,2.4,Medium-High,10.4,Medium,0.62
+Guatemala,GTM,Central America,0.6,Low,0.4,2.2,3.5,1.7,Low-Medium,17.6,Low,0.18
+Guinea,GIN,Sub-Saharan Africa,0.2,Low,0.1,2.0,3.5,1.5,Low-Medium,13.9,Low,0.08
+Guinea-Bissau,GNB,Sub-Saharan Africa,0.1,Low,0.1,2.5,4.0,1.7,Low-Medium,2.1,Low,0.05
+Guyana,GUY,South America,0.1,Low,0.1,1.5,2.5,1.1,Low,0.8,Low,0.05
+Haiti,HTI,Caribbean,2.0,Medium-High,1.8,2.8,3.5,2.5,Medium-High,11.6,Medium,0.52
+Honduras,HND,Central America,0.5,Low,0.3,2.2,3.5,1.6,Low-Medium,10.3,Low,0.15
+Hungary,HUN,Europe,1.5,Low-Medium,1.0,1.8,2.2,1.6,Low-Medium,10.2,Low,0.32
+Iceland,ISL,Europe,0.1,Low,0.1,1.0,1.5,0.7,Low,0.4,Low,0.03
+India,IND,South Asia,4.0,High,3.5,2.8,4.0,3.6,High,1408.0,High,0.90
+Indonesia,IDN,Southeast Asia,0.8,Low,0.5,1.8,3.0,1.5,Low-Medium,276.0,Low,0.22
+Iran,IRN,Middle East,4.5,Extremely High,4.2,2.5,3.0,3.6,High,87.9,Very High,0.95
+Iraq,IRQ,Middle East,4.2,Extremely High,4.0,2.8,3.2,3.6,High,43.5,Very High,0.92
+Ireland,IRL,Europe,0.3,Low,0.2,1.5,2.0,1.0,Low,5.1,Low,0.08
+Israel,ISR,Middle East,4.8,Extremely High,4.5,2.0,2.2,3.4,High,9.4,Very High,0.95
+Italy,ITA,Europe,2.8,Medium-High,2.2,2.0,2.5,2.4,Medium-High,59.0,High,0.75
+Jamaica,JAM,Caribbean,1.5,Low-Medium,1.2,2.5,3.0,2.1,Medium-High,3.0,Medium,0.40
+Japan,JPN,East Asia,2.0,Medium-High,1.5,2.0,3.0,2.1,Medium-High,125.0,Medium,0.55
+Jordan,JOR,Middle East,5.0,Extremely High,5.0,2.5,2.8,3.8,High,11.2,Very High,1.0
+Kazakhstan,KAZ,Central Asia,2.5,Medium-High,2.0,2.8,3.2,2.6,Medium-High,19.4,Medium,0.58
+Kenya,KEN,East Africa,2.2,Medium-High,1.8,3.0,3.5,2.6,Medium-High,54.0,Medium,0.55
+Kosovo,XKX,Europe,1.8,Low-Medium,1.2,2.0,2.5,1.9,Low-Medium,1.8,Low,0.38
+Kuwait,KWT,Middle East,5.0,Extremely High,5.0,1.0,1.5,3.1,High,4.3,Very High,1.0
+Kyrgyzstan,KGZ,Central Asia,2.8,Medium-High,2.2,2.5,3.5,2.8,Medium-High,6.7,Medium,0.62
+Laos,LAO,Southeast Asia,0.3,Low,0.2,1.8,3.5,1.5,Low-Medium,7.5,Low,0.10
+Latvia,LVA,Europe,0.3,Low,0.2,1.5,2.0,1.0,Low,1.9,Low,0.08
+Lebanon,LBN,Middle East,4.2,Extremely High,3.8,2.5,3.0,3.4,High,5.5,Very High,0.92
+Lesotho,LSO,Sub-Saharan Africa,2.0,Medium-High,1.5,3.0,3.5,2.5,Medium-High,2.3,Medium,0.52
+Liberia,LBR,Sub-Saharan Africa,0.1,Low,0.1,1.8,3.0,1.3,Low,5.2,Low,0.05
+Libya,LBY,North Africa,5.0,Extremely High,5.0,2.5,2.0,3.6,High,7.0,Very High,1.0
+Lithuania,LTU,Europe,0.5,Low,0.3,1.5,2.0,1.1,Low,2.8,Low,0.12
+Luxembourg,LUX,Europe,1.2,Low-Medium,0.8,1.5,2.0,1.4,Low,0.6,Low,0.28
+Madagascar,MDG,Sub-Saharan Africa,0.5,Low,0.3,2.5,3.5,1.7,Low-Medium,29.6,Low,0.15
+Malawi,MWI,Sub-Saharan Africa,1.0,Low,0.7,2.8,3.5,2.0,Low-Medium,20.4,Low,0.28
+Malaysia,MYS,Southeast Asia,0.5,Low,0.3,1.5,2.5,1.2,Low,33.6,Low,0.15
+Mali,MLI,Sub-Saharan Africa,1.5,Low-Medium,1.2,3.5,4.5,2.7,Medium-High,22.4,Medium,0.42
+Mauritania,MRT,Sub-Saharan Africa,3.5,High,3.0,3.5,4.0,3.5,High,4.9,High,0.80
+Mauritius,MUS,Sub-Saharan Africa,1.8,Low-Medium,1.5,2.0,2.5,2.0,Low-Medium,1.3,Low,0.40
+Mexico,MEX,North America,3.2,High,2.8,2.5,3.0,2.9,Medium-High,128.9,High,0.80
+Moldova,MDA,Europe,1.8,Low-Medium,1.2,2.2,2.5,1.9,Low-Medium,2.6,Low,0.38
+Mongolia,MNG,East Asia,1.2,Low-Medium,0.8,3.0,3.5,2.1,Medium-High,3.4,Low,0.30
+Montenegro,MNE,Europe,0.8,Low,0.5,2.0,2.5,1.5,Low-Medium,0.6,Low,0.18
+Morocco,MAR,North Africa,4.2,Extremely High,3.8,2.5,3.0,3.4,High,37.5,Very High,0.90
+Mozambique,MOZ,Sub-Saharan Africa,0.4,Low,0.3,2.8,3.5,1.8,Low-Medium,33.0,Low,0.12
+Myanmar,MMR,Southeast Asia,0.5,Low,0.3,2.0,4.0,1.7,Low-Medium,54.8,Low,0.15
+Namibia,NAM,Sub-Saharan Africa,2.8,Medium-High,2.5,3.5,3.8,3.2,High,2.6,Medium,0.65
+Nepal,NPL,South Asia,1.5,Low-Medium,1.0,2.2,4.0,2.2,Medium-High,30.0,Low,0.38
+Netherlands,NLD,Europe,1.5,Low-Medium,1.0,1.2,1.8,1.4,Low,17.5,Low,0.30
+New Zealand,NZL,Oceania,0.5,Low,0.3,1.5,2.0,1.1,Low,5.1,Low,0.12
+Nicaragua,NIC,Central America,0.3,Low,0.2,2.0,3.5,1.5,Low-Medium,6.9,Low,0.10
+Niger,NER,Sub-Saharan Africa,2.5,Medium-High,2.0,3.8,4.5,3.2,High,26.2,Medium,0.60
+Nigeria,NGA,Sub-Saharan Africa,1.2,Low-Medium,0.8,2.5,3.5,2.0,Low-Medium,218.5,Low,0.30
+North Korea,PRK,East Asia,2.2,Medium-High,1.8,2.5,3.5,2.5,Medium-High,26.0,Medium,0.55
+North Macedonia,MKD,Europe,1.8,Low-Medium,1.5,2.2,2.5,2.0,Low-Medium,1.8,Low,0.40
+Norway,NOR,Europe,0.2,Low,0.1,1.0,1.5,0.7,Low,5.5,Low,0.05
+Oman,OMN,Middle East,5.0,Extremely High,5.0,1.5,2.0,3.4,High,4.6,Very High,1.0
+Pakistan,PAK,South Asia,4.5,Extremely High,4.0,2.5,3.8,3.7,High,231.0,Very High,0.95
+Palestine,PSE,Middle East,4.5,Extremely High,4.2,2.0,2.5,3.3,High,5.4,Very High,0.95
+Panama,PAN,Central America,0.2,Low,0.1,1.5,3.0,1.2,Low,4.4,Low,0.08
+Papua New Guinea,PNG,Oceania,0.1,Low,0.1,1.5,2.5,1.1,Low,10.1,Low,0.04
+Paraguay,PRY,South America,0.3,Low,0.2,1.8,2.5,1.2,Low,7.4,Low,0.08
+Peru,PER,South America,1.0,Low,0.7,2.5,3.5,1.9,Low-Medium,34.0,Low,0.28
+Philippines,PHL,Southeast Asia,1.2,Low-Medium,0.8,2.0,3.5,1.9,Low-Medium,115.6,Low,0.30
+Poland,POL,Europe,1.5,Low-Medium,1.0,1.8,2.2,1.6,Low-Medium,37.7,Low,0.32
+Portugal,PRT,Europe,2.5,Medium-High,2.0,2.2,2.8,2.4,Medium-High,10.3,Medium,0.58
+Qatar,QAT,Middle East,5.0,Extremely High,5.0,1.0,1.5,3.1,High,2.9,Very High,1.0
+Romania,ROU,Europe,1.5,Low-Medium,1.0,2.0,2.5,1.8,Low-Medium,19.0,Low,0.32
+Russia,RUS,Europe/Asia,0.8,Low,0.5,1.8,2.5,1.4,Low,144.0,Low,0.20
+Rwanda,RWA,Sub-Saharan Africa,0.8,Low,0.5,2.2,2.8,1.6,Low-Medium,13.6,Low,0.20
+Saudi Arabia,SAU,Middle East,5.0,Extremely High,5.0,1.5,2.0,3.4,High,36.4,Very High,1.0
+Senegal,SEN,Sub-Saharan Africa,1.8,Low-Medium,1.5,3.0,4.0,2.6,Medium-High,17.7,Medium,0.45
+Serbia,SRB,Europe,1.2,Low-Medium,0.8,2.0,2.5,1.6,Low-Medium,6.6,Low,0.28
+Sierra Leone,SLE,Sub-Saharan Africa,0.2,Low,0.1,2.0,3.5,1.5,Low-Medium,8.6,Low,0.08
+Singapore,SGP,Southeast Asia,2.5,Medium-High,2.0,1.5,2.0,2.0,Low-Medium,5.9,Medium,0.65
+Slovakia,SVK,Europe,0.8,Low,0.5,1.8,2.2,1.3,Low,5.4,Low,0.18
+Slovenia,SVN,Europe,0.5,Low,0.3,1.5,2.0,1.1,Low,2.1,Low,0.12
+Somalia,SOM,East Africa,4.5,Extremely High,4.2,3.8,4.0,4.1,Extremely High,17.1,Very High,0.98
+South Africa,ZAF,Sub-Saharan Africa,3.5,High,3.0,3.0,3.5,3.3,High,60.0,High,0.80
+South Korea,KOR,East Asia,2.2,Medium-High,1.8,2.0,3.0,2.3,Medium-High,51.7,Medium,0.60
+South Sudan,SSD,East Africa,0.5,Low,0.3,3.0,4.0,2.0,Low-Medium,11.1,Low,0.15
+Spain,ESP,Europe,3.2,High,2.8,2.2,2.8,2.8,Medium-High,47.4,High,0.80
+Sri Lanka,LKA,South Asia,1.8,Low-Medium,1.2,2.0,3.5,2.1,Medium-High,22.2,Medium,0.42
+Sudan,SDN,East Africa,4.0,High,3.5,3.5,4.0,3.8,High,46.9,Very High,0.90
+Suriname,SUR,South America,0.1,Low,0.1,1.5,2.5,1.1,Low,0.6,Low,0.04
+Sweden,SWE,Europe,0.3,Low,0.2,1.2,1.8,0.9,Low,10.5,Low,0.08
+Switzerland,CHE,Europe,0.5,Low,0.3,1.2,1.8,1.0,Low,8.7,Low,0.12
+Syria,SYR,Middle East,4.5,Extremely High,4.2,2.8,3.2,3.7,High,22.1,Very High,0.95
+Taiwan,TWN,East Asia,2.0,Medium-High,1.5,2.2,3.5,2.3,Medium-High,23.9,Medium,0.52
+Tajikistan,TJK,Central Asia,2.2,Medium-High,1.8,2.8,3.8,2.7,Medium-High,9.9,Medium,0.55
+Tanzania,TZA,Sub-Saharan Africa,1.0,Low,0.7,2.8,3.5,2.0,Low-Medium,65.5,Low,0.28
+Thailand,THA,Southeast Asia,1.5,Low-Medium,1.0,2.0,3.5,2.0,Low-Medium,71.6,Low,0.35
+Togo,TGO,Sub-Saharan Africa,0.5,Low,0.3,2.5,3.5,1.7,Low-Medium,8.8,Low,0.15
+Trinidad and Tobago,TTO,Caribbean,1.2,Low-Medium,0.8,2.0,2.5,1.6,Low-Medium,1.4,Low,0.28
+Tunisia,TUN,North Africa,4.2,Extremely High,3.8,2.5,3.0,3.4,High,12.0,Very High,0.92
+Turkey,TUR,West Asia,3.2,High,2.8,2.2,2.8,2.8,Medium-High,85.3,High,0.78
+Turkmenistan,TKM,Central Asia,4.5,Extremely High,4.2,2.0,2.5,3.3,High,6.3,Very High,0.95
+Uganda,UGA,Sub-Saharan Africa,0.5,Low,0.3,2.5,3.0,1.6,Low-Medium,47.2,Low,0.15
+Ukraine,UKR,Europe,1.8,Low-Medium,1.2,2.0,2.5,1.9,Low-Medium,44.0,Low,0.38
+United Arab Emirates,ARE,Middle East,5.0,Extremely High,5.0,1.0,1.5,3.1,High,9.4,Very High,0.98
+United Kingdom,GBR,Europe,1.0,Low,0.7,1.5,2.0,1.3,Low,67.7,Low,0.20
+United States,USA,North America,1.8,Low-Medium,1.2,2.0,2.5,1.9,Low-Medium,331.9,Low,0.30
+Uruguay,URY,South America,0.8,Low,0.5,2.0,2.5,1.5,Low-Medium,3.4,Low,0.18
+Uzbekistan,UZB,Central Asia,4.5,Extremely High,4.2,2.2,3.0,3.5,High,35.2,Very High,0.95
+Venezuela,VEN,South America,0.8,Low,0.5,2.0,2.8,1.5,Low-Medium,28.4,Low,0.20
+Vietnam,VNM,Southeast Asia,1.2,Low-Medium,0.8,2.0,3.5,1.9,Low-Medium,98.2,Low,0.30
+Yemen,YEM,Middle East,5.0,Extremely High,5.0,3.0,3.5,4.1,Extremely High,33.7,Very High,1.0
+Zambia,ZMB,Sub-Saharan Africa,0.5,Low,0.3,2.5,3.5,1.7,Low-Medium,20.0,Low,0.15
+Zimbabwe,ZWE,Sub-Saharan Africa,2.2,Medium-High,1.8,3.2,3.8,2.8,Medium-High,16.3,Medium,0.55
+Andorra,AND,Europe,0.8,Low,0.5,1.5,2.0,1.2,Low,0.1,Low,0.18
+Antigua and Barbuda,ATG,Caribbean,2.0,Medium-High,1.5,2.0,2.5,2.0,Low-Medium,0.1,Medium,0.48
+Bahamas,BHS,Caribbean,1.5,Low-Medium,1.2,2.0,2.5,1.8,Low-Medium,0.4,Low,0.35
+Barbados,BRB,Caribbean,2.5,Medium-High,2.0,2.0,2.5,2.3,Medium-High,0.3,Medium,0.58
+Belize,BLZ,Central America,0.3,Low,0.2,2.0,3.0,1.4,Low,0.4,Low,0.10
+Cape Verde,CPV,Sub-Saharan Africa,3.5,High,3.0,2.5,3.0,3.0,High,0.6,High,0.78
+Dominica,DMA,Caribbean,0.3,Low,0.2,1.8,3.0,1.3,Low,0.1,Low,0.08
+East Timor,TLS,Southeast Asia,0.5,Low,0.3,2.5,3.5,1.7,Low-Medium,1.3,Low,0.15
+Grenada,GRD,Caribbean,0.5,Low,0.3,2.0,2.8,1.4,Low,0.1,Low,0.12
+Kiribati,KIR,Oceania,1.0,Low,0.7,2.0,2.5,1.6,Low-Medium,0.1,Low,0.25
+Maldives,MDV,South Asia,2.8,Medium-High,2.5,1.5,2.0,2.2,Medium-High,0.5,Medium,0.62
+Malta,MLT,Europe,3.5,High,3.0,1.8,2.2,2.6,Medium-High,0.5,High,0.78
+Marshall Islands,MHL,Oceania,0.8,Low,0.5,2.0,2.5,1.5,Low-Medium,0.1,Low,0.20
+Micronesia,FSM,Oceania,0.3,Low,0.2,2.0,2.5,1.3,Low,0.1,Low,0.08
+Monaco,MCO,Europe,1.5,Low-Medium,1.0,1.5,2.0,1.5,Low-Medium,0.04,Low,0.32
+Palau,PLW,Oceania,0.2,Low,0.1,1.8,2.5,1.2,Low,0.02,Low,0.05
+Samoa,WSM,Oceania,0.2,Low,0.1,1.8,3.0,1.3,Low,0.2,Low,0.08
+San Marino,SMR,Europe,1.2,Low-Medium,0.8,1.5,2.0,1.4,Low,0.03,Low,0.28
+Sao Tome and Principe,STP,Sub-Saharan Africa,0.2,Low,0.1,1.8,2.5,1.2,Low,0.2,Low,0.05
+Seychelles,SYC,Sub-Saharan Africa,0.8,Low,0.5,1.8,2.5,1.4,Low,0.1,Low,0.18
+Solomon Islands,SLB,Oceania,0.1,Low,0.1,1.5,2.5,1.1,Low,0.7,Low,0.04
+St. Kitts and Nevis,KNA,Caribbean,1.0,Low,0.7,2.0,2.5,1.6,Low-Medium,0.1,Low,0.25
+St. Lucia,LCA,Caribbean,0.8,Low,0.5,2.0,2.8,1.5,Low-Medium,0.2,Low,0.18
+St. Vincent and Grenadines,VCT,Caribbean,0.5,Low,0.3,2.0,2.8,1.4,Low,0.1,Low,0.12
+Tonga,TON,Oceania,0.3,Low,0.2,1.8,2.5,1.2,Low,0.1,Low,0.08
+Tuvalu,TUV,Oceania,0.5,Low,0.3,2.0,2.5,1.3,Low,0.01,Low,0.12
+Vanuatu,VUT,Oceania,0.2,Low,0.1,1.8,2.8,1.2,Low,0.3,Low,0.05
+Vatican City,VAT,Europe,1.2,Low-Medium,0.8,1.5,2.0,1.4,Low,0.001,Low,0.28
